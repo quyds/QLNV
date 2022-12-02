@@ -1,58 +1,66 @@
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-
-public class MyStack<S>{
-    private LinkedList<S> stacks;
+public class MyStack<T> {
+    private Node<T> top;
+    private Node<T> node;
     private int size;
 
-    public MyStack() {
-        stacks = new LinkedList<S>();
+    public MyStack (){
+        top = null;
         size = 0;
     }
 
-    public boolean empty() {
-        return size == 0;
-    }
-
-    public void push(S item) {
-        size++;
-        stacks.add(item);
-    }
-    public int size() {
-        return stacks.size();
-    }
-    
-    public S remove() {
-    	return stacks.remove();
-    }
-
-    public S get(int index) {
-        return stacks.get(index);
-    }
-
-    public S pop() throws NoSuchElementException {
-        if(empty())
-            throw new NoSuchElementException("Cannot pop from empty stack");
-        else
-            size--;
-        return stacks.removeLast();
-    }
-
-    public S peek() throws NoSuchElementException {
-        if(empty())
-            throw new NoSuchElementException("Cannot pop from empty stack");
-        return stacks.getLast();
-    }
-
-    @Override
-    public String toString() {
-        String str = "";
-        for (int i = 0; i < stacks.size(); i++) {
-            if (stacks.get(i) == null) {
-                break;
-            }
-            str = str + stacks.get(i) + ",";
+    public boolean isEmpty(){
+        if(size() == 0){
+            return true;
+        }else{
+            return false;
         }
-        return str;
+    }
+
+    public int size(){
+        return size;
+    }
+
+    public void push (T data){
+        node = new Node<>(data, this.top);
+        top = node;
+        size++;
+    }
+
+    public T peek(){
+        return this.top.getData();
+    }
+
+    public T pop(){
+        T data;
+
+        if(isEmpty() == true) {
+            System.out.println("stack empty");
+            return null;
+        }
+
+        if(size() == 1) {
+            data = top.getData();
+            top = null;
+            size--;
+            return data;
+        }else {
+            data = top.getData();
+            top = top.getNext();
+            size--;
+            return data;
+        }
+    }
+
+    public void show (){
+        Node data = top;
+        if(isEmpty()){
+            System.out.println("stack empty");
+        }else{
+            System.out.printf(data.getData() + "" + ",");
+            for(int i=0;i<size-1;i++){
+                data = data.getNext();
+                System.out.printf(data.getData() + ",");
+            }
+        }
     }
 }
