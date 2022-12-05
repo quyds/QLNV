@@ -27,8 +27,6 @@ public class MyList {
             this.next = next;
         }
 
-
-
     }
 
     public static class MyStack<T> { //LIFo
@@ -53,6 +51,11 @@ public class MyList {
             return size;
         }
 
+        public void push (T data){
+            node = new Node<>(data, this.top);
+            top = node;
+            size++;
+        }
 
         public T peek(){
             return this.top.getData();
@@ -80,7 +83,7 @@ public class MyList {
         }
 
         public void show (){
-            Node data = top;
+            Node<T> data = top;
             if(isEmpty()){
                 System.out.println("stack empty");
             }else{
@@ -145,7 +148,7 @@ public class MyList {
         }
 
         public void show (){
-            Node data = top;
+            Node<T> data = top;
             if(isEmpty()){
                 System.out.println("stack empty");
             }else{

@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class ManagerEmployees {
-    int n;
     MyStack<Employees> employees = new MyStack<Employees>();
-
     Scanner sc = new Scanner(System.in);
 
     public void employeesAdd(Employees employee) {
@@ -18,9 +16,9 @@ public class ManagerEmployees {
 
     public void employeesEdit(int id) {
         for (int i =0; i < employees.size(); i++) {
-            if (employees.get(i).employeeParam.id == id) {
-                System.out.println(employees.get(i).editEmployees(sc));
-            }
+//            if (employees.get(i).employeeParam.id == id) {
+//                System.out.println(employees.get(i).editEmployees(sc));
+//            }
         }
     }
 }

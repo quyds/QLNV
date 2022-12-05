@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class ManagerDept {
     MyMap<Integer, Department> departments = new MyHashMap<Integer, Department>();
 

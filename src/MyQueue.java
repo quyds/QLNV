@@ -1,8 +1,3 @@
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.Vector;
-
 public class MyQueue<T>{
     private Node<T> top;
     private Node<T> node;
@@ -61,7 +56,7 @@ public class MyQueue<T>{
     }
 
     public void show (){
-        Node data = top;
+        Node<T> data = top;
         if(isEmpty()){
             System.out.println("stack empty");
         }else{

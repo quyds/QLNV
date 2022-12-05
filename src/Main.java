@@ -4,49 +4,65 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Employees employee;
+        Employees[] employeeArr;
         Group group;
         Department department;
+        Task[] taskArr;
 
         ManagerEmployees managerEmployees = new ManagerEmployees();
         ManagerGroup managerGroup = new ManagerGroup();
         ManagerDept managerDept = new ManagerDept();
+        ManagerTask managerTask = new ManagerTask();
         Scanner sc = new Scanner(System.in);
 
-// Employees
+//// Employees
+        int nEmployee;
         int employeeId;
         int phone;
         int editId;
-        do {
-            System.out.print("\tEnter id: ");
-            while (!sc.hasNextInt()) {
-                System.out.println("\tThat's not a number!");
-                sc.next(); // this is important!
-            }
-            employeeId = sc.nextInt();
-        } while (employeeId <= 0);
-        System.out.print("\tEnter name: ");
-        sc.nextLine();
-        String name = sc.nextLine();
-        System.out.print("\tEnter gender: ");
-        String gender = sc.nextLine();
-        System.out.print("\tEnter address: ");
-        String address = sc.nextLine();
-        do {
-            System.out.print("\tEnter phone number: ");
-            while (!sc.hasNextInt()) {
-                System.out.println("\tThat's not a number!");
-                sc.next(); // this is important!
-            }
-            phone = sc.nextInt();
-        } while (phone <= 0);
-        System.out.print("\tEnter email: ");
-        sc.nextLine();
-        String email = sc.nextLine();
-        Date createAt = new Date();
 
-        employee = new Employees(new EmployeeParam(employeeId, name,phone, address, email, gender,null, createAt, null, null, null));
-        managerEmployees.employeesAdd(employee);
+        do {
+            System.out.print("\tEnter number id: ");
+            while (!sc.hasNextInt()) {
+                System.out.println("\tThat's not a number!");
+                sc.next(); // this is important!
+            }
+            nEmployee = sc.nextInt();
+        } while (nEmployee <= 0);
+
+        employeeArr = new Employees[nEmployee];
+        for (int i =0; i < employeeArr.length; i++) {
+            do {
+                System.out.print("\tEnter id: ");
+                while (!sc.hasNextInt()) {
+                    System.out.println("\tThat's not a number!");
+                    sc.next(); // this is important!
+                }
+                employeeId = sc.nextInt();
+            } while (employeeId <= 0);
+            System.out.print("\tEnter name: ");
+            sc.nextLine();
+            String name = sc.nextLine();
+            System.out.print("\tEnter gender: ");
+            String gender = sc.nextLine();
+            System.out.print("\tEnter address: ");
+            String address = sc.nextLine();
+            do {
+                System.out.print("\tEnter phone number: ");
+                while (!sc.hasNextInt()) {
+                    System.out.println("\tThat's not a number!");
+                    sc.next(); // this is important!
+                }
+                phone = sc.nextInt();
+            } while (phone <= 0);
+            System.out.print("\tEnter email: ");
+            sc.nextLine();
+            String email = sc.nextLine();
+            Date createAt = new Date();
+
+            employeeArr[i] = new Employees(new EmployeeParam(employeeId, name,phone, address, email, gender,null, createAt, null, null, null));
+            managerEmployees.employeesAdd(employeeArr[i]);
+        }
 
         System.out.println("--------------");
         managerEmployees.employeesShow();
@@ -60,8 +76,8 @@ public class Main {
             editId = sc.nextInt();
         } while (editId <= 0);
         managerEmployees.employeesEdit(editId);
-
-// Group
+//
+//// Group
         int groupId;
         do {
             System.out.print("\tEnter id: ");
@@ -75,20 +91,20 @@ public class Main {
         sc.nextLine();
         String groupName = sc.nextLine();
         System.out.print("\tEnter Description: ");
-        String groupDes = sc.nextLine();
+        String groupDept = sc.nextLine();
 
-        group = new Group(groupId, groupName, groupDes, null);
+        group = new Group(groupId, groupName, groupDept, null);
         System.out.println("--------------");
         managerGroup.groupAdd(group);
         managerGroup.groupShow();
 
         System.out.println("--------------");
 
-        managerGroup.groupAddUser(employee);
+//        managerGroup.groupAddUser(employee);
         managerGroup.groupShow();
         System.out.println("--------------");
 
-// Department
+//// Department
         int keyId;
         int deptId;
         String deptName;
@@ -134,5 +150,55 @@ public class Main {
         managerDept.deptAddGroup(group);
         managerDept.deptShow();
         System.out.println("--------------");
+
+//Task
+        int taskId;
+        int n;
+        do {
+            System.out.print("\tEnter number id: ");
+            while (!sc.hasNextInt()) {
+                System.out.println("\tThat's not a number!");
+                sc.next(); // this is important!
+            }
+            n = sc.nextInt();
+        } while (n <= 0);
+
+        taskArr = new Task[n];
+        for (int i = 0; i < taskArr.length; i++) {
+            do {
+                System.out.print("\tEnter id: ");
+                while (!sc.hasNextInt()) {
+                    System.out.println("\tThat's not a number!");
+                    sc.next(); // this is important!
+                }
+                taskId = sc.nextInt();
+            } while (taskId <= 0);
+
+            System.out.print("\tEnter name: ");
+            sc.nextLine();
+            String taskName = sc.nextLine();
+            System.out.print("\tEnter Description: ");
+            String taskDes = sc.nextLine();
+            Date createAt = new Date();
+
+            taskArr[i] = new Task(taskId, taskName, taskDes, null, null, createAt, null);
+            managerTask.addTask(taskArr[i]);
+        }
+
+        System.out.println("--------------");
+        managerTask.showTask();
+
+        int nTaskId;
+        do {
+            System.out.print("\tEnter search id: ");
+            while (!sc.hasNextInt()) {
+                System.out.println("\tThat's not a number!");
+                sc.next(); // this is important!
+            }
+            nTaskId = sc.nextInt();
+        } while (nTaskId <= 0);
+
+        managerTask.searchTaskId(nTaskId);
+
     }
 }

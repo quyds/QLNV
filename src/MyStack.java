@@ -56,7 +56,7 @@ public class MyStack<T> {
     }
 
     public void show (){
-        Node data = top;
+        Node<T> data = top;
         if(isEmpty()){
             System.out.println("stack empty");
         }else{

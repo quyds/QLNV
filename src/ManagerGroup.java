@@ -16,15 +16,15 @@ public class ManagerGroup {
     }
     public void groupAddUser(Employees employees) {
         for (int i =0; i < groups.size(); i++) {
-            groups.get(i).addUserGroup(employees);
+//            groups.get(i).addUserGroup(employees);
         }
     }
 
     public void groupSearchId(int id) {
         for (int i =0; i < groups.size(); i++) {
-            if (groups.get(i).getId() == id) {
-                System.out.println(groups.get(i).toString());
-            }
+//            if (groups.get(i).getId() == id) {
+//                System.out.println(groups.get(i).toString());
+//            }
         }
     }
 }

@@ -1,13 +1,13 @@
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Group {
     private int id;
     private String name;
     private String description;
-    private List<Employees> employees;
+    private ArrayList<Employees> employees;
 
-    public Group(int id, String name, String description, List<Employees> employees) {
+    public Group(int id, String name, String description, ArrayList<Employees> employees) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,11 +38,11 @@ public class Group {
         this.description = description;
     }
 
-    public List<Employees> getEmployees() {
+    public ArrayList<Employees> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(List<Employees> employees) {
+    public void setEmployees(ArrayList<Employees> employees) {
         this.employees = employees;
     }
 
