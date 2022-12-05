@@ -1,6 +1,10 @@
+package Manager.Employee;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import Manager.Group.Group;
+import Manager.Task.Task;
 
 public class EmployeeParam {
     public int id;
