@@ -27,6 +27,10 @@ public class MyStack<T> {
     }
 
     public T peek(){
+        if(isEmpty() == true) {
+                System.out.println("stack empty");
+                return null;
+            }
         return this.top.getData();
     }
 

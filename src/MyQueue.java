@@ -3,54 +3,73 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Vector;
 
-public class MyQueue<S>{
-    private LinkedList<S> stacks;
+public class MyQueue<T>{
+    private Node<T> top;
+    private Node<T> node;
     private int size;
 
-    public MyQueue() {
-        stacks = new LinkedList<S>();
+    public MyQueue (){
+        top = null;
         size = 0;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
+    public boolean isEmpty(){
+        if(size() == 0){
+            return true;
+        }else{
+            return false;
+        }
     }
-    public int size() {
+
+    public int size(){
         return size;
     }
 
-    public S get(int index) {
-        return stacks.get(index);
-    }
-    public void offer(S item) {
-        size++;
-        stacks.add(item);
-    }
-
-    public S peek() throws NoSuchElementException {
-        if(isEmpty()) {
-            throw new NoSuchElementException("Cannot pop from empty stack");
-        }
-        return stacks.getFirst();
-    }
-
-    public S poll() throws NoSuchElementException {
-        if(isEmpty())
-            throw new NoSuchElementException("Cannot pop from empty stack");
-        else
-            size--;
-        return stacks.removeFirst();
-    }
-
-    @Override
-    public String toString() {
-        String str = "";
-        for (int i = 0; i < stacks.size(); i++) {
-            if (stacks.get(i) == null) {
-                break;
+    public void offer (T data){
+        node = new Node<T>();
+        if (top == null) {
+            top = node;
+        } else {
+            Node<T> currentNode = top;
+            while (currentNode.getNext() != null){
+                currentNode = currentNode.getNext();
             }
-            str = str + stacks.get(i) + ",";
+            currentNode.setNext(node);
         }
-        return str;
+        node.setData(data);
+        size++;
+    }
+
+    public T peek(){
+        if(isEmpty() == true) {
+                System.out.println("stack empty");
+                return null;
+            }
+        return this.top.getData();
+    }
+
+    public T poll(){
+        if(isEmpty() == true) {
+                System.out.println("stack empty");
+                return null;
+            }
+        Node<T> data = top;
+        top = top.getNext();
+
+        size--;
+        return data.getData();
+    }
+
+    public void show (){
+        Node data = top;
+        if(isEmpty()){
+            System.out.println("stack empty");
+        }else{
+            System.out.printf(data.getData() + "" + ",");
+            for(int i=0;i<size-1;i++){
+                data = data.getNext();
+                System.out.printf(data.getData() + ",");
+            }
+        }
     }
 }
