@@ -64,21 +64,21 @@ public class MyMapp {
                 top = newNode;
             } else {
                 if (checkKeyExisted(key)) {
-                    top = newNode;
+                    System.out.println("Key existed");
                 }else {
-                    System.out.println("Key error");
+                    top = newNode;
                 }
             }
         }
 
         public boolean checkKeyExisted(K key) {
-            boolean result = true;
+            boolean existed = false;
             for (Node<K, V> currentNode = top; currentNode != null; currentNode = currentNode.prev) {
                 if (key == currentNode.getKey()) {
-                    result = false;
+                    existed = true;
                 }
             }
-            return result;
+            return existed;
         }
 
         public V get(K key) {
@@ -96,15 +96,15 @@ public class MyMapp {
             for (Node<K, V> currentNode = top; currentNode != null; currentNode = currentNode.prev) {
                 if (currentNode.prev == null && currentNode.key == key) {
                     top = null;
-                    return (V) currentNode.value;
+                    return (V) currentNode;
                 }
                 if (currentNode.prev != null && currentNode.key == key) {
                     top = currentNode.getPrev();
-                    return (V) currentNode.value;
+                    return (V) currentNode;
                 }
                 if (currentNode.prev != null && currentNode.prev.key == key) {
                     currentNode.prev = currentNode.prev.prev;
-                    return (V) currentNode.prev.value;
+                    return (V) currentNode.prev;
                 }
             }
             return null;
@@ -131,8 +131,8 @@ public class MyMapp {
         mapp.put(2, "b");
         mapp.put(3, "c");
         mapp.put(4, "d");
-
-        mapp.remove(3);
+        
+        mapp.remove(1);
 
         mapp.show();
     }
