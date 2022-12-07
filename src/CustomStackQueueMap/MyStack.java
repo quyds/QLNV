@@ -1,36 +1,28 @@
-public class MyStack<T> {
+public class MyStack<T> { //LIFo
     private Node<T> top;
-    private Node<T> node;
-    private int size;
 
     public MyStack (){
         top = null;
-        size = 0;
     }
 
     public boolean isEmpty(){
-        if(size() == 0){
+        if(top == null){
             return true;
         }else{
             return false;
         }
     }
 
-    public int size(){
-        return size;
-    }
-
     public void push (T data){
-        node = new Node<>(data, this.top);
-        top = node;
-        size++;
+        Node<T> newNode = new Node<>(data, this.top);
+        top = newNode;
     }
 
     public T peek(){
         if(isEmpty() == true) {
-                System.out.println("stack empty");
-                return null;
-            }
+            System.out.println("stack empty");
+            return null;
+        }
         return this.top.getData();
     }
 
@@ -41,16 +33,13 @@ public class MyStack<T> {
             System.out.println("stack empty");
             return null;
         }
-
-        if(size() == 1) {
+        if(top.getNext() == null) {
             data = top.getData();
             top = null;
-            size--;
             return data;
         }else {
             data = top.getData();
             top = top.getNext();
-            size--;
             return data;
         }
     }
@@ -60,10 +49,10 @@ public class MyStack<T> {
         if(isEmpty()){
             System.out.println("stack empty");
         }else{
-            System.out.printf(data.getData() + "" + ",");
-            for(int i=0;i<size-1;i++){
+            System.out.printf(data.getData() + ",");
+            while (data.getNext() != null){
                 data = data.getNext();
-                System.out.printf(data.getData() + ",");
+                System.out.println(data.getData() + ",");
             }
         }
     }
