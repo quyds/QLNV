@@ -192,10 +192,10 @@ public class Sort {
 
     public static void main(String[] args) {
         int arr[] = {6, 3, 11, 13, 2};
-//            bubbleSort(arr);
-       // quickSort(arr, 0, arr.length-1);
+        bubbleSort(arr);
+        quickSort(arr, 0, arr.length-1);
         heapSort(arr);
-            printArray(arr);
+        printArray(arr);
     }
 }
 
